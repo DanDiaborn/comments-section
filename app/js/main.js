@@ -1,5 +1,6 @@
-alert(123);
-
+window.onload = () => {
+  alert(123);
+}
 // window.onload = () => {
 
 //   alert(123)

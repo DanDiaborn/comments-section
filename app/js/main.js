@@ -1,5 +1,7 @@
 window.onload = () => {
 
+  alert(123)
+
   const bodyElement = document.querySelector('body');
   const answer = document.querySelector('#sf_consultation_comment_answer_description');
   function removeHTMLTags(str) {

@@ -16,7 +16,7 @@ const watching = () => {
 const scripts = () => {
   return src([
     //path to scripts in node molules.
-    'node_modules/quill/dist/quill.js',
+    // 'node_modules/quill/dist/quill.js',
     'app/js/main.js'])
     .pipe(concat('main.min.js'))
     // .pipe(uglify())

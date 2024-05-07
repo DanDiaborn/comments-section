@@ -6,8 +6,6 @@ window.onload = () => {
     return str.replace(/<[^>]*>/g, '');
   }
 
-  //test
-
   //QUILL
 
   const quill = new Quill('#ql-editor-wrapper', {

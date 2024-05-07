@@ -1,54 +1,12 @@
 
 window.onload = () => {
 
-  alert(123)
-
   const bodyElement = document.querySelector('body');
-  const answer = document.querySelector('#sf_consultation_comment_answer_description');
-  function removeHTMLTags(str) {
-    return str.replace(/<[^>]*>/g, '');
-  }
+  // const answer = document.querySelector('#sf_consultation_comment_answer_description');
+  // function removeHTMLTags(str) {
+  //   return str.replace(/<[^>]*>/g, '');
+  // }
 
-  //QUILL
-
-  // const quill = new Quill('#ql-editor-wrapper', {
-  //   theme: 'snow',
-  // });
-
-  // quill.on('text-change', (delta, oldDelta, source) => {
-  //   const qlEditor = document.querySelector('.ql-editor');
-
-  //   formQuestionInputLength = removeHTMLTags(qlEditor.innerHTML).length;
-  //   answer.value = qlEditor.innerHTML;
-  //   if (formQuestionInputLength <= progressBarTime) {
-  //     progressBar.style.setProperty('--pseudo-element-width', `${formQuestionInputLength / progressBarTime * 100}%`);
-  //   }
-  //   else {
-  //     progressBar.style.setProperty('--pseudo-element-width', `100%`);
-  //   }
-  //   if (bodyElement.classList.contains('user-authenticated')) {
-  //     if (formQuestionInputLength >= progressBarTime) {
-  //       fullFormConfirmAuthBtn.classList.remove('full-form__confirm-btn-authenticated-unactive');
-  //       fullFormConfirmAuthBtn.classList.add('full-form__confirm-btn-authenticated-active');
-  //     }
-  //     else {
-  //       fullFormConfirmAuthBtn.classList.remove('full-form__confirm-btn-authenticated-active');
-  //       fullFormConfirmAuthBtn.classList.add('full-form__confirm-btn-authenticated-unactive');
-  //     }
-
-  //   }
-  //   else {
-  //     if (formQuestionInputLength >= progressBarTime) {
-  //       fullFormNextBtn.classList.remove('full-form__next-btn-unactive');
-  //       fullFormNextBtn.classList.add('full-form__next-btn-active');
-  //     }
-  //     else {
-  //       fullFormNextBtn.classList.remove('full-form__next-btn-active');
-  //       fullFormNextBtn.classList.add('full-form__next-btn-unactive');
-  //     }
-
-  //   }
-  // });
 
   //CONTACT MENU
 
@@ -89,6 +47,13 @@ window.onload = () => {
   //INPUT SIZE
 
 
+  let textarea = document.querySelector(".full-form__question-input");
+  textarea.style.height = textarea.scrollHeight + "px";
+  textarea.addEventListener("input", function () {
+    this.style.height = "auto";
+    this.style.height = this.scrollHeight + "px";
+  });
+
   // textarea.style.height = textarea.scrollHeight + "px";
   // textarea.addEventListener("input", function () {
   //   this.style.height = "auto";
@@ -122,8 +87,8 @@ window.onload = () => {
   //reset form before opening new
   const resetForm = (activeFake) => {
     // simplemde.value('');
-    // textarea.value = '';
-    // textarea.style.height = textarea.scrollHeight + "px";
+    textarea.value = '';
+    textarea.style.height = textarea.scrollHeight + "px";
     if (!(activeFake.parentNode.getAttribute('data-id') === textareaFake.parentNode.getAttribute('data-id'))) {
       textareaFake.classList.remove('hide');
       textareaFake.disabled = false;
@@ -186,38 +151,38 @@ window.onload = () => {
     }
   })
 
-  //progress bar and buttons visuals
-  // formQuestionInput.addEventListener("input", (event) => {
-  //   formQuestionInputLength = event.target.value.length;
-  //   if (formQuestionInputLength <= progressBarTime) {
-  //     progressBar.style.setProperty('--pseudo-element-width', `${formQuestionInputLength / progressBarTime * 100}%`);
-  //   }
-  //   else {
-  //     progressBar.style.setProperty('--pseudo-element-width', `100%`);
-  //   }
-  //   if (bodyElement.classList.contains('user-authenticated')) {
-  //     if (formQuestionInputLength >= progressBarTime) {
-  //       fullFormConfirmAuthBtn.classList.remove('full-form__confirm-btn-authenticated-unactive');
-  //       fullFormConfirmAuthBtn.classList.add('full-form__confirm-btn-authenticated-active');
-  //     }
-  //     else {
-  //       fullFormConfirmAuthBtn.classList.remove('full-form__confirm-btn-authenticated-active');
-  //       fullFormConfirmAuthBtn.classList.add('full-form__confirm-btn-authenticated-unactive');
-  //     }
+  // progress bar and buttons visuals
+  formQuestionInput.addEventListener("input", (event) => {
+    formQuestionInputLength = event.target.value.length;
+    if (formQuestionInputLength <= progressBarTime) {
+      progressBar.style.setProperty('--pseudo-element-width', `${formQuestionInputLength / progressBarTime * 100}%`);
+    }
+    else {
+      progressBar.style.setProperty('--pseudo-element-width', `100%`);
+    }
+    if (bodyElement.classList.contains('user-authenticated')) {
+      if (formQuestionInputLength >= progressBarTime) {
+        fullFormConfirmAuthBtn.classList.remove('full-form__confirm-btn-authenticated-unactive');
+        fullFormConfirmAuthBtn.classList.add('full-form__confirm-btn-authenticated-active');
+      }
+      else {
+        fullFormConfirmAuthBtn.classList.remove('full-form__confirm-btn-authenticated-active');
+        fullFormConfirmAuthBtn.classList.add('full-form__confirm-btn-authenticated-unactive');
+      }
 
-  //   }
-  //   else {
-  //     if (formQuestionInputLength >= progressBarTime) {
-  //       fullFormNextBtn.classList.remove('full-form__next-btn-unactive');
-  //       fullFormNextBtn.classList.add('full-form__next-btn-active');
-  //     }
-  //     else {
-  //       fullFormNextBtn.classList.remove('full-form__next-btn-active');
-  //       fullFormNextBtn.classList.add('full-form__next-btn-unactive');
-  //     }
+    }
+    else {
+      if (formQuestionInputLength >= progressBarTime) {
+        fullFormNextBtn.classList.remove('full-form__next-btn-unactive');
+        fullFormNextBtn.classList.add('full-form__next-btn-active');
+      }
+      else {
+        fullFormNextBtn.classList.remove('full-form__next-btn-active');
+        fullFormNextBtn.classList.add('full-form__next-btn-unactive');
+      }
 
-  //   }
-  // });
+    }
+  });
 
   //button next
   fullFormNextBtn.onclick = (event) => {
